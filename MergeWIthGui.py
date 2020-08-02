@@ -9,26 +9,26 @@ root = Tk()
 
 root.title("PDF merge")
 
-#함수
+#fnc
 
-    #파일 추가 
+    #add file
 def add_file():
 
-    files = filedialog.askopenfilenames(title="이미지 파일을 선택하세요", 
-    filetypes = (("PDF 파일", "*.pdf"),("모든 파일", "*.*")), initialdir = "C:/")
+    files = filedialog.askopenfilenames(title="choose PDF file", 
+    filetypes = (("PDF file", "*.pdf"),("all", "*.*")), initialdir = "C:/")
     
-    #출력
+    #output
     for file in files: 
         list_file.insert(END, file)
 
 
-    # 파일 삭제
+    # delete list
 def del_file():
 
     for index in reversed(list_file.curselection()):
         list_file.delete(index)
 
-    # 저장 경로
+    # save path
 def browse_dest_path():
     folder_selected  = filedialog.askdirectory()
     if folder_selected == '':
@@ -37,24 +37,24 @@ def browse_dest_path():
     txt_dest_path.insert(0, folder_selected)
 
 
-
+# after start button
 def start():
  
     if list_file.size() == 0:
-        msgbox.showinfo("파일 경로 없음","파일 경로를 지정해주세요.")
+        msgbox.showinfo("No file path","select file path")
         return
 
     if len(txt_dest_path.get()) == 0:
-        msgbox.showinfo(title="저장 경로 없음", message="저장 경로를 지정해주세요.")
+        msgbox.showinfo(title="No save path", message="select save path")
         return
     
     if len(txt_dest_path.get()) == 0:
-        msgbox.showinfo(title="저장명 없음", message="병합 파일명을 지정해주세요.")
+        msgbox.showinfo(title="No merged file name", message="choose new file name")
         return
     merge_image()
     return
 
-# pdf 통합 작업
+# pdf merge
 def merge_image():
 
     # all_name = list_file.get(0)
@@ -99,7 +99,7 @@ def merge_image():
     p_var.set(progress)
     progress_bar.update()
 
-    msgbox.showinfo("완료","병합이 완료되었습니다.")
+    msgbox.showinfo("finished","merge completed.")
     pdf_merger.close()
     return
         
@@ -108,14 +108,14 @@ def merge_image():
 
 
 
-#저장 경로
-path_frame = LabelFrame(root, text="저장경로")
+#save path
+path_frame = LabelFrame(root, text="save path")
 path_frame.pack(fill="x",padx =5, pady=5, ipady=5)
 
 txt_dest_path = Entry(path_frame)
 txt_dest_path.pack(side="left", fill = "x", expand=True, padx =5, pady=5, ipady=4)
 
-btn_dest_path = Button(path_frame, text="찾아보기", width=10, command=browse_dest_path)
+btn_dest_path = Button(path_frame, text="look up", width=10, command=browse_dest_path)
 btn_dest_path.pack(side="right", padx=5, pady=5)
 
 
@@ -125,7 +125,7 @@ btn_dest_path.pack(side="right", padx=5, pady=5)
 list_frame = Frame(root)
 list_frame.pack(fill="both",padx =5, pady=5)
 
-lbl_list = Label(list_frame, text="병합할 파일",relief="sunken", width=68)
+lbl_list = Label(list_frame, text="files for merge",relief="sunken", width=68)
 lbl_list.pack(side="top")
 
 scrollbar = Scrollbar(list_frame)
@@ -135,13 +135,12 @@ list_file = Listbox(list_frame, selectmode = "extended", height=15, yscrollcomma
 list_file.pack(side="left", fill="both", expand=True)
 scrollbar.config(command=list_file.yview)
 
-# 파일 프레임 (파일 추가, 선택 삭제)
+# file frame
 file_frame = Frame(root)
 file_frame.pack(padx =5, pady=5, fill='x')
 
-# name_frame = LabelFrame(root, text="저장 파일명")
-# name_frame.pack(side="right",padx =5, pady=5, ipady=5)
-lbl_name = Label(file_frame, text="병합된 파일명: ", width=8, anchor="e")
+
+lbl_name = Label(file_frame, text="new file name: ", width=8, anchor="e")
 lbl_name.pack(side="left", fill="x", expand=True)
 
 new_name = Entry(file_frame)
@@ -158,7 +157,7 @@ btn_del_file.pack(side="right",padx =5, pady=5)
 
 
 # 진행 상황
-frame_progress = LabelFrame(root, text="진행상황")
+frame_progress = LabelFrame(root, text="progress")
 frame_progress.pack(fill="x",padx =5, pady=5, ipady=5)
 
 p_var = DoubleVar()
@@ -170,10 +169,10 @@ progress_bar.pack(fill="x",padx =5, pady=5)
 frame_run = Frame(root,padx =5, pady=5)
 frame_run.pack(fill="x", ipady=5)
 
-btn_close = Button(frame_run, padx=5, pady=5, text="닫기", width=12, command=root.quit)
+btn_close = Button(frame_run, padx=5, pady=5, text="Exit", width=12, command=root.quit)
 btn_close.pack(side="right", padx=5, pady=5)
 
-btn_start = Button(frame_run, padx=5, pady=5, text="시작", width=12, command=start)
+btn_start = Button(frame_run, padx=5, pady=5, text="Start", width=12, command=start)
 btn_start.pack(side="right", padx=5, pady=5)
 
 
