@@ -115,7 +115,7 @@ path_frame.pack(fill="x",padx =5, pady=5, ipady=5)
 txt_dest_path = Entry(path_frame)
 txt_dest_path.pack(side="left", fill = "x", expand=True, padx =5, pady=5, ipady=4)
 
-btn_dest_path = Button(path_frame, text="look up", width=10, command=browse_dest_path)
+btn_dest_path = Button(path_frame, text="select path", width=10, command=browse_dest_path)
 btn_dest_path.pack(side="right", padx=5, pady=5)
 
 
@@ -147,10 +147,10 @@ new_name = Entry(file_frame)
 new_name.pack(side="left", expand=True, padx =2, pady=2, ipady=4)
 
 
-btn_add_file = Button(file_frame, padx=5, pady=5, width=10,text="파일 추가", command = add_file)
+btn_add_file = Button(file_frame, padx=5, pady=5, width=10,text="add files", command = add_file)
 btn_add_file.pack(side="left",padx =5, pady=5)
 
-btn_del_file = Button(file_frame, padx=5, pady=5, width=10,text="선택 삭제", command= del_file)
+btn_del_file = Button(file_frame, padx=5, pady=5, width=10,text="delete", command= del_file)
 btn_del_file.pack(side="right",padx =5, pady=5)
 
 
